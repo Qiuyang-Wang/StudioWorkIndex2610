@@ -1,0 +1,9 @@
+#play-button{
+    width: 5rem;
+}
+#play-button:hover{
+    cursor: no-drop;
+}
+#play-button:active{
+    width: 3rem;
+}
