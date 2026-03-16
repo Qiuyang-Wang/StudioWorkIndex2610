@@ -16,18 +16,14 @@ dialogcloseButton.addEventListener("click",closeDialog);
 //tone synth init
 const synth = new Tone.Synth().toDestination();
 
-
-
 //play sound withtone
 function playNote(){
     synth.triggerAttackRelease("C4", "8n");
 }
 
-playButton.addEventListener("click",playNote);
-
 function startNote(){
     synth.triggerAttack("C4");
-    document.body.style.backgroundColor="red";
+    document.body.style.backgroundColor="#0bcd98";
 }
 
 function endNote(){
@@ -35,5 +31,16 @@ function endNote(){
     document.body.style.backgroundColor="white";
 }
 
+playButton.addEventListener("click",playNote);
 playButton.addEventListener("mousedown",startNote);
 playButton.addEventListener("mouseup",endNote);
+
+playButton.addEventListener("mouseenter",()=>{
+    console.log("Mouse entered the button,ready to play sound")
+});
+
+playButton.addEventListener("mouseleave",()=>{
+    console.log("Mouse leave button");
+    synth.triggerRelease();
+    document.body.style.backgroundColor="white";
+})

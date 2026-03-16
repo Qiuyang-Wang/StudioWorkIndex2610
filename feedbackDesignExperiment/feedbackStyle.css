@@ -1,9 +1,31 @@
 #play-button{
     width: 5rem;
+    height: 5rem;
+    border: none;
+    border-radius: 50%;
+    background: #fed266;
+    color: #053b4b;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition:all 0.15s ease;
 }
 #play-button:hover{
     cursor: no-drop;
+    transform: scale(1.05);
+    background: #f98c6a;
 }
 #play-button:active{
-    width: 3rem;
+    width: 4.5rem;
+    height: 4.5rem;
+    transform: scale(0.95);
+    background: #f04670;
+}
+
+#play-button:focus{
+    outline: 3px solid #158ab2;
+    outline-offset: 2px;
+}
+
+body{
+    transition: background-color 0.2s ease;
 }
