@@ -1,4 +1,79 @@
+/* Global style reset and base setup */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    background-color: black;
-    color : white;
+    /* Light background (matches the light background in image 1) */
+    background-color: #f0f0f0;
+    /* Text color changed to dark gray/black (matches the dark text in image 1) */
+    color: #333333;
+    /* Set font family and line height */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    padding: 2rem;
+    /* Center all text content */
+    text-align: center;
+}
+
+/* Heading styles */
+h1 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    color: #333333; /* Keep headings dark */
+}
+
+h2 {
+    font-size: 1.4rem;
+    margin: 2rem 0 1rem;
+    color: #333333;
+}
+
+h3 {
+    font-size: 1.1rem;
+    margin: 1.5rem 0 0.8rem;
+    color: #333333;
+}
+
+/* Student ID style */
+.student-id {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin-bottom: 1.5rem;
+}
+
+/* Paragraph text */
+p {
+    margin-bottom: 1rem;
+    /* Limit paragraph width for readability while keeping centered */
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left; /* Keep paragraph text left-aligned for readability */
+}
+
+/* Link style (dark blue links, darker on hover) */
+a {
+    color: #1a0dab;
+    text-decoration: underline;
+}
+
+a:hover {
+    color: #150a80;
+}
+
+/* List style */
+ol {
+    /* Center the list container */
+    display: inline-block;
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1rem;
+}
+
+ol li {
+    margin-bottom: 0.3rem;
 }
