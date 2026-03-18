@@ -1,9 +1,12 @@
 #play-button{
     width: 5rem;
     height: 5rem;
+    /*Remove default border to create a clean look.*/
     border: none;
     border-radius: 50%;
+    /*Warm colours are highly distinctive and quickly capture users’ attention on a page*/
     background: #fed266;
+    /*This creates a high contrast with the warm yellow background, ensuring the text is clear and legible*/
     color: #053b4b;
     font-size: 1.2rem;
     cursor: pointer;
@@ -11,21 +14,29 @@
 }
 #play-button:hover{
     cursor: no-drop;
+    /*Provide users with clear, interactive feedback to guide them to click*/
     transform: scale(1.05);
+    /*Increase the saturation of the default warm yellow and use subtle colour variations
+    to indicate that the mouse has been detected*/
     background: #f98c6a;
 }
 #play-button:active{
     width: 4.5rem;
     height: 4.5rem;
+    /*The tactile feedback of a physical press*/
     transform: scale(0.95);
+    /*The saturation has been further increased, using more vivid colours to indicate that
+    the button has been pressed*/
     background: #f04670;
 }
 
 #play-button:focus{
+    /*Clearly indicate the keyboard focus state using high-contrast blue outlines to meet accessibility requirements*/
     outline: 3px solid #158ab2;
     outline-offset: 2px;
 }
 
 body{
+    /*Maintain the fluidity of the overall visual experience*/
     transition: background-color 0.2s ease;
 }
