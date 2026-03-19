@@ -5,6 +5,7 @@ main{
 }
 
 .stageContainer {
-    background-color: skyblue;
+    /*Soft warm neutral background to keep focus on circles and reduce visual fatigue.*/
+    background-color: linen;
     flex: 1;
 }

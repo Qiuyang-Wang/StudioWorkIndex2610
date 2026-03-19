@@ -39,7 +39,8 @@
 
 .blackKey {
     margin: 0;
-    background-color: var(--col01);
+    /*A vibrant emerald green that complements the background whilst emphasising the presence of the black keys*/
+    background-color: #00d5c5;
     border: var(--border);
     border-left: none;
     border-radius: 0 0 0.25rem 0.25rem;

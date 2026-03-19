@@ -9,7 +9,8 @@
     --col02: #fff2df;
     /*It is easier to read against this background; it is gentle on the eyes and not glaring.*/
     --col03: #e9edf0;
-    --col04: #5b5d70;
+    /*The deep blue contrasts with the white keys, making the outline stand out more clearly*/
+    --col04: #213b58;
     --col05: #0b3289;
     /*It exudes a sense of calm and tranquillity, creating a contrast between warm and cool tones
      with the red, and highlighting the black key interactions.*/

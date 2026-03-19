@@ -1,9 +1,9 @@
 //find our elements
 const stageContainer = document.getElementById('stage-container');
 const circlebutton = document.getElementById('circle-button');
-const changeRed = document.getElementById('change-red');
-const changeCornflower = document.getElementById('change-cornflower');
-const changeGreenyellow = document.getElementById('change-greenyellow');
+const changeLightcyan = document.getElementById('change-lightcyan');
+const changeLightblue = document.getElementById('change-lightblue');
+const changeLightskyblue = document.getElementById('change-lightskyblue');
 
 let stagecontainerwidth = stageContainer.offsetWidth;
 console.log(stagecontainerwidth);
@@ -37,21 +37,19 @@ function drawNewcircle(){
     firstlayer.add(circle);
 }
 
+// Attach a click event listener to the circle button to trigger drawing a new circle
 circlebutton.addEventListener("click", drawNewcircle);
 
-//changing our circle colour
-//I choose radio buttons because they allows
-//
-//to change my colouor, I need to find the value off the input click
-
+// Function to update the global circle color based on radio button selection
 function changeColourRadio(clickEvent){
-    //find the value of the
+    // Extract the color value from the clicked radio button's 'value' attribute
     let newColour = clickEvent.target.value;
-    //set the value
+    // Update the global 'circleColour' variable to the new selected color
     circleColour = newColour;
 }
 
-//add eventlistner
-changeRed.addEventListener("click", changeColourRadio);
-changeCornflower.addEventListener("click", changeColourRadio);
-changeGreenyellow.addEventListener("click", changeColourRadio);
+// Attach click event listeners to color selection radio buttons
+// These buttons will update the circle color when clicked
+changeLightcyan.addEventListener("click", changeColourRadio);
+changeLightblue.addEventListener("click", changeColourRadio);
+changeLightskyblue.addEventListener("click", changeColourRadio);
