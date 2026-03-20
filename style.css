@@ -15,7 +15,13 @@ body {
     line-height: 1.6;
     padding: 2rem;
     /* Center all text content */
-    text-align: center;
+    text-align: left;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 30px;
 }
 
 /* Heading styles */
@@ -23,6 +29,7 @@ h1 {
     font-size: 1.8rem;
     margin-bottom: 0.5rem;
     color: #333333; /* Keep headings dark */
+
 }
 
 h2 {
@@ -49,9 +56,45 @@ p {
     margin-bottom: 1rem;
     /* Limit paragraph width for readability while keeping centered */
     max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 0;
+    margin-right: 0;
     text-align: left; /* Keep paragraph text left-aligned for readability */
+    text-indent: 0;
+}
+
+.image-row {
+    display: flex;
+    justify-content: space-between; /* separated left and right */
+    align-items: flex-start;
+    margin: 40px auto;
+    width: 80%;
+}
+
+.image-box {
+    width: 45%;
+    text-align: center;
+}
+
+.image-box img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+/* Control left and right offset */
+.left {
+    margin-right: auto;
+}
+
+.right {
+    margin-left: auto;
+}
+
+/* Caption */
+.caption {
+    font-size: 14px;
+    color: #555;
+    margin-top: 8px;
+    text-align: left;
 }
 
 /* Link style (dark blue links, darker on hover) */
@@ -69,8 +112,8 @@ ol {
     /* Center the list container */
     display: inline-block;
     text-align: left;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 0;
+    margin-right: 0;
     margin-bottom: 1rem;
 }
 
