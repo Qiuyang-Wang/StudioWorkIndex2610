@@ -120,3 +120,33 @@ ol {
 ol li {
     margin-bottom: 0.3rem;
 }
+
+.timeline {
+    font-family: Arial, sans-serif;
+    padding: 24px;
+    background: #f0f0f0;
+}
+
+.timeline table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    color: #333;
+}
+
+.timeline thead tr {
+    background: #222;
+    color: #fff;
+}
+
+.timeline th,
+.timeline td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid #f0f0f0;
+    vertical-align: top;
+}
+
+.timeline tbody tr:nth-child(even) {
+    background: #CFD0D5 !important;
+}

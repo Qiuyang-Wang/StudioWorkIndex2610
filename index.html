@@ -77,6 +77,109 @@
         <p>The system offers three deformation modes: Liquid, Elastic and Heat. The Liquid mode emphasises smooth, continuous flow effects; the Elastic mode incorporates a rebound mechanism; whilst the Heat mode simulates air refraction through unstable ripples. These three modes provide users with a variety of experiences whilst maintaining a simple technical implementation.</p>
         <p>Interaction is primarily based on mouse or touch controls, supplemented by adjustments to parameters such as intensity, range and speed. These controls are not merely functional settings; they also serve as a visual representation of the ‘mapping relationship’, enabling users to understand how their actions affect the system.</p>
         <p>Technically, the project utilises HTML, CSS and JavaScript, achieving visual transformations by manipulating the positions of grid points rather than through complex pixel-level processing. This approach both reduces development complexity and enhances the expression of artist variation.Overall, the design framework strikes a balance between simplicity and expressiveness, making the tool both easy to use and offering a certain depth of exploration.</p>
+
+        <h3>Conceptual Response</h3>
+        <p>Creative context: Put simply, the starting point for this project is a re-examination of traditional digital drawing tools. Tools such as Photoshop or Illustrator are underpinned by a logic of precise control—users draw lines, fill in colours and adjust anchor points, with every step leading to a predetermined outcome. There is nothing inherently wrong with this logic, but it assumes that creation is a direct process moving from intention to execution. The problem is that many interesting visual outcomes arise precisely from moments of loss of control, yet traditional tools virtually rule out this possibility.</p>
+        <p>What this tool aims to do is transform ‘loss of control’ into a state that can be actively chosen. Here, the user is not manipulating a brush, but an existing spatial structure. A grid is pre-existing on the canvas; by swiping, the user pushes and distorts it, altering the form of the entire field rather than adding new elements to a blank space. This distinction may seem minor, but it fundamentally changes the relationship between the user and the canvas—the user is no longer a ‘producer’, but rather interacts with an existing system.</p>
+        <p>What this tool aims to do is transform ‘loss of control’ into a state that can be actively chosen. Here, the user is not manipulating a brush, but an existing spatial structure. A grid is pre-existing on the canvas; by swiping, the user pushes and distorts it, altering the form of the entire field rather than adding new elements to a blank space. This distinction may seem minor, but it fundamentally changes the relationship between the user and the canvas—the user is no longer a ‘producer’, but rather interacts with an existing system.</p>
+        <p>This tool is primarily aimed at two types of users: ordinary people interested in artistic creation but lacking a background in drawing, and creators seeking to explore new forms of expression. Neither group requires any technical expertise to get started. The generated grid patterns can be exported as PNG files via the ‘Save’ function and inserted into posters or other media for further use; thus, it is not merely a tool for ‘play’, but also serves a practical creative purpose.</p>
+        <p>Interaction design principle: In terms of interaction design principles, this project centres on ‘mapping’. Norman (2013) notes that good mapping involves a natural correspondence between the controller’s actions and the system’s responses. This tool applies this principle to the spatial dimension: the direction of the user’s mouse movement directly corresponds to the direction of the grid’s movement; wherever the user drags, that area deforms, with no intermediate steps. This correspondence is entirely intuitive, requiring no learning on the user’s part. The three distortion modes offer varying degrees of unpredictability. The behaviour of the Liquid and Elastic modes is relatively predictable, whereas the Heat mode introduces time-based random fluctuations, resulting in the system exhibiting its own ‘mind’ alongside the user’s actions. This design philosophy is similar to that of certain tools in the generative art field, such as WeaveSilk and Patatap, which all emphasise the value of chance and the process of change itself, rather than whether the final image meets expectations.</p>
+
+        <h3>Technical Approach</h3>
+        <p>At the heart of this tool is a grid-based physics system running on an HTML5 Canvas. When the page loads, the `createGrid()` function generates a uniform grid on the canvas with 40px spacing; each point stores its current coordinates, initial coordinates and velocity vectors (vx, vy). The initial coordinates allow the ‘Reset’ function to immediately return all points to their starting positions without the need for recalculation. The canvas dimensions are determined by resizeCanvas(), which reads the actual size after CSS rendering (getBoundingClientRect()) and writes it to the canvas’s pixel buffer, ensuring that mouse coordinates and point coordinates remain aligned within the same space under a 4:3 aspect ratio.</p>
+        <p>User gestures are converted into physical responses via `applyDistortion()`. This function applies an outward velocity impulse to every point within a 120px radius, with the force calculated using a quadratic decay formula (`Math.pow(1 - dist / radius, 2)`), such that the thrust is greater the closer the point is to the mouse. The three modes adjust the multiplier based on this: Liquid uses ×2.5, Elastic uses ×6.0, and Heat uses ×1.5 plus a lateral noise term of Math. sin(Date.now() * 0.02 + p.y * 0.1) * 0.2. During rapid movement, there are gaps between pointermove events; the code uses linear interpolation to interpolate points between the positions of two frames, ensuring the distorted trajectory remains continuous. The rendering loop is driven by `requestAnimationFrame`; each frame, the velocity is multiplied by 0.9 to apply decay, causing the point to naturally decelerate and come to rest. The export function uses `canvas.toDataURL(‘image/png’)` to capture the current frame’s pixels and triggers a download via a temporary `a` tag, without relying on any external libraries. For further technical details, please refer to the MDN Canvas API documentation (MDN Web Docs, n.d.-a) and the Pointer Events specification (MDN Web Docs, n.d.-b). </p>
+
+        <h3>Project Prototype</h3>
+        <a href="https://creativetoolprototype.netlify.app/" target="_blank ">https://creativetoolprototype.netlify.app/</a>
+
+        <h3>Peer User Testing Form</h3>
+        <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=cTYy0b7NF0S01L2yS1Exa5qINZp6o_VHi1BLm68flH1URE1QRU5NVzUxVjBGOUdNR1kySDlaUE44TS4u" target="_blank ">https://forms.office.com/Pages/ResponsePage.aspx?id=cTYy0b7NF0S01L2yS1Exa5qINZp6o_VHi1BLm68flH1URE1QRU5NVzUxVjBGOUdNR1kySDlaUE44TS4u</a>
+
+        <h3>Peer User Testing Reflection</h3>
+        <p>This test yielded 17 responses. Overall, there were several consistent findings and some unexpected results.</p>
+        <p>In terms of usage patterns, the most common action for the majority of users was to simply drag the mouse to distort the grid, rather than repeatedly switching modes or adjusting the intensity. This suggests that the tool’s core interaction—where gestures map to spatial deformation—is intuitive enough for users to pick up without much learning. However, this also highlights a problem: if users consistently rely on the dragging action, the differences between the modes become difficult to perceive. Several participants explicitly mentioned that Liquid and Elastic looked quite similar, a concern I had briefly harboured during development. Ironically, the Heat mode—due to the addition of random jitter—proved to be the most easily distinguishable of the three, and was the most frequently selected. This result led me to consider whether the force multipliers for Liquid and Elastic should be set further apart.</p>
+        <p>Regarding the scope for creative expression, the feedback revealed a fairly clear divide. Some users felt the tool offered sufficient creative scope, believing it could be used to express emotions or create assets; others felt that the results always looked similar, lacking a sense of personalisation. This divergence is actually quite interesting—the tool deliberately downplays ‘precise control’, yet this acts as a limitation for some users. It made me realise that ‘unpredictability’ as a design intent is not something everyone will naturally accept; the tool may need to provide users with a few more fixed functions in certain areas.</p>
+        <p>There are two specific issues raised in the feedback that warrant addressing. Firstly, the background of the saved image is transparent, which differs from the beige background seen on the webpage; some users feel the exported result is quite different from what they expected. This issue is not difficult to resolve technically; simply drawing the background colour onto the canvas before exporting will do the trick, and I have included this in the full version. Secondly, when the intensity slider is set to its lowest point, it remains completely stationary. Some users felt this state served no purpose and suggested retaining a minimal amount of movement. This feedback is entirely reasonable; a slight response even at extremely low intensities would create a more seamless user experience.</p>
+        <p>One rather unique suggestion was to introduce an ‘attraction mode’—where the mouse pulls points towards it rather than pushing them away. This is the opposite of the current repulsion logic, but it is entirely feasible technically; it simply requires reversing the direction of the force. It’s a rather good idea, as it would offer users a completely different feel to the interaction, and I’m keen to try it out as a separate, switchable feature.</p>
+
+        <h3>Project Timeline</h3>
+
+
+    </section>
+
+    <section class="timeline">
+        <table>
+            <thead>
+            <tr>
+                <th>Date</th>
+                <th>Phase</th>
+                <th>Activity</th>
+                <th>Notes</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Mar 2</td>
+                <td>Project Kickoff</td>
+                <td>Initial concept: image liquify / gradient tool</td>
+                <td>—</td>
+            </tr>
+            <tr>
+                <td>Mid Mar</td>
+                <td>Pivot</td>
+                <td>Dropped image-processing direction; shifted to dot-grid distortion</td>
+                <td>High technical complexity and overlap with existing tools; dot-grid approach offered more expressive originality</td>
+            </tr>
+            <tr>
+                <td>Late Mar</td>
+                <td>Proof of Concept</td>
+                <td>Built a basic demo: mouse drag pushes dots apart</td>
+                <td>Validated core interaction direction</td>
+            </tr>
+            <tr>
+                <td>Early–Mid Apr</td>
+                <td>Core Development</td>
+                <td>Implemented three distortion modes, physics damping, and intensity slider; resolved distortion trail continuity (linear interpolation) and adaptive canvas sizing (4:3)</td>
+                <td>Trail interpolation and canvas sizing were the main technical challenges</td>
+            </tr>
+            <tr>
+                <td>Mid Apr</td>
+                <td>Feature Polish</td>
+                <td>Added colour cycling, Reset, Save (PNG export); finalised 70vw + aspect-ratio: 4/3 layout</td>
+                <td>—</td>
+            </tr>
+            <tr>
+                <td>Apr 19</td>
+                <td>Prototype Complete</td>
+                <td>Interactive prototype ready</td>
+                <td>—</td>
+            </tr>
+            <tr>
+                <td>Apr 20</td>
+                <td>Peer User Testing</td>
+                <td>In-class peer test; 17 responses collected</td>
+                <td>Key feedback: Heat mode most perceptibly distinct; Liquid / Elastic too similar; exported PNG background transparent (unexpected)</td>
+            </tr>
+            <tr>
+                <td>Late Apr–Early May</td>
+                <td>Iteration & Fixes</td>
+                <td>Fix transparent export background; increase Liquid / Elastic differentiation; add attract mode</td>
+                <td>Prioritised by frequency in user feedback</td>
+            </tr>
+            <tr>
+                <td>Mid May</td>
+                <td>Feature Expansion</td>
+                <td>Customisable background colour; explore alternative dot shapes; add sound feedback per mode</td>
+                <td>Ordered by implementation difficulty; sound and shapes treated as stretch goals</td>
+            </tr>
+            <tr>
+                <td>May 22</td>
+                <td>Final Submission</td>
+                <td>Complete project submitted</td>
+                <td>—</td>
+            </tr>
+            </tbody>
+        </table>
     </section>
 </div>
 </body>
