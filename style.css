@@ -121,12 +121,14 @@ ol li {
     margin-bottom: 0.3rem;
 }
 
+/* The entire timetable block is set in a sans-serif font, with space left for inner margins; the light grey background creates a subtle sense of depth within the table. */
 .timeline {
     font-family: Arial, sans-serif;
     padding: 24px;
     background: #f0f0f0;
 }
 
+/* Set the width to fill the container, and use `border-collapse` to remove the default spacing between cells, making the divider look clean and crisp */
 .timeline table {
     width: 100%;
     border-collapse: collapse;
@@ -134,11 +136,14 @@ ol li {
     color: #333;
 }
 
+/* The dark header and white text create a strong contrast, making it easy to distinguish the header from the data rows at a glance, whilst also providing a visual anchor for the entire table */
 .timeline thead tr {
     background: #222;
     color: #fff;
 }
 
+/* Uniform padding on all sides; left alignment aligns with the reading habit of reading timelines from left to right;
+   `vertical-align: top` ensures that long text blocks start at the top and do not appear to float in the middle */
 .timeline th,
 .timeline td {
     padding: 10px 14px;
@@ -147,6 +152,8 @@ ol li {
     vertical-align: top;
 }
 
+/* Alternating row colours make it easier to distinguish between rows; the blue-grey #CFD0D5 has a slightly more stylish look than plain white or plain grey;
+   !important prevents other styles from accidentally overriding this effect */
 .timeline tbody tr:nth-child(even) {
     background: #CFD0D5 !important;
 }
