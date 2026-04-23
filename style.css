@@ -107,19 +107,7 @@ a:hover {
     color: #150a80;
 }
 
-/* List style */
-ol {
-    /* Center the list container */
-    display: inline-block;
-    text-align: left;
-    margin-left: 0;
-    margin-right: 0;
-    margin-bottom: 1rem;
-}
 
-ol li {
-    margin-bottom: 0.3rem;
-}
 
 /* The entire timetable block is set in a sans-serif font, with space left for inner margins; the light grey background creates a subtle sense of depth within the table. */
 .timeline {
